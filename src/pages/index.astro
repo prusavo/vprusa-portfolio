@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site, links, media, about } from '../data/site';
+import { site, links, media, about, contactNote } from '../data/site';
 import { projects } from '../data/projects';
 
 const year = new Date().getFullYear();
@@ -29,7 +29,7 @@ const year = new Date().getFullYear();
 
     <div class="wrap">
       <section class="section" aria-labelledby="about-label">
-        <p class="tag section__label" id="about-label">About</p>
+        <p class="tag section__label" id="about-label">The short version</p>
 
         <div class="about">
           <div class="about__story">
@@ -57,7 +57,7 @@ const year = new Date().getFullYear();
       </section>
 
       <section class="section" aria-labelledby="projects-label">
-        <p class="tag section__label" id="projects-label">Live projects</p>
+        <p class="tag section__label" id="projects-label">What I’m building</p>
 
         <ul class="list">
           {
@@ -87,7 +87,9 @@ const year = new Date().getFullYear();
       </section>
 
       <section class="section" aria-labelledby="contact-label">
-        <p class="tag section__label" id="contact-label">Contact</p>
+        <p class="tag section__label" id="contact-label">Say hi</p>
+
+        <p class="contact-note">{contactNote}</p>
 
         {
           links.map((link) => (

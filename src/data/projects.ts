@@ -18,14 +18,14 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: 'Plesica',
-    blurb: 'Spaced-repetition flashcards that keep working with the network off.',
+    blurb: 'Flashcards on spaced repetition that keep working when the wi-fi doesn’t.',
     domain: 'plesica.com',
     url: 'https://plesica.com',
     accent: '#3A2FD6',
   },
   {
     name: 'Gymrora',
-    blurb: 'A coaching platform where trainers plan the work and athletes run it.',
+    blurb: 'A coaching platform — trainers plan the work, athletes run it.',
     domain: 'gymrora.com',
     url: 'https://gymrora.com',
     accent: '#0E6B52',

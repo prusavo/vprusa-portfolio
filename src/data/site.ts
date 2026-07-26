@@ -5,7 +5,7 @@ export const site = {
   email: 'prusavo@gmail.com',
   title: 'Vojtěch Prusa',
   description:
-    'Vojtěch Prusa — product engineer. Projects: Plesica, a spaced-repetition app, and Gymrora, a coaching platform.',
+    'Vojtěch Prusa — product engineer. Building Plesica and Gymrora; runs, lifts, reads romantasy, and walks a Samoyed named Maggie.',
 } as const;
 
 const instagram = 'https://www.instagram.com/vojtapru__/';
@@ -71,10 +71,18 @@ export const media = {
   } as { src: string; alt: string; width: number; height: number } | null,
 } as const;
 
-/** The about section. Story first, the dog gets the picture. */
+/**
+ * The about section. Voice rule for the whole page: this is a get-to-know-me
+ * page, not a hire-me page — first person, warm, specific, nothing that would
+ * fit on a CV.
+ */
 export const about = {
   story: [
-    'Writing code since I was twelve, professionally since 2022. The original dream was video games; somewhere along the way that became web apps — nearly the same thing, except my final boss is a production deploy.',
-    'Off the clock: running, the gym, and romantasy novels — yes, the kind with fae courts and terrible decisions; no, I regret nothing. Whatever time is left belongs to Maggie, a Samoyed who is technically a cloud.',
+    'Code since I was twelve; the dream back then was video games. These days I build web apps instead — nearly the same thing, except my final boss is a production deploy. Since 2022 it’s also the day job.',
+    'Away from the keyboard: running, the gym, and romantasy — yes, the kind with fae courts and terrible decisions; no, I regret nothing. Everything else is Maggie’s time. She’s a Samoyed, which is to say a cloud with opinions.',
   ],
 } as const;
+
+/** One line above the contact rows — an invitation, not a funnel. */
+export const contactNote =
+  'For anything at all — a question, a book recommendation, a photo of your dog.';

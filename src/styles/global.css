@@ -346,6 +346,16 @@ img {
 
 /* ------------------------------------------------------------ contact rows */
 
+/* The invitation line — serif, quiet, above the rows. */
+.contact-note {
+  margin: 1.4rem 0 0.6rem;
+  font-style: italic;
+  font-size: clamp(1.0625rem, 1.2vw + 0.9rem, 1.25rem);
+  color: var(--graphite);
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
 .row {
   display: flex;
   align-items: baseline;
