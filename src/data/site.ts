@@ -3,8 +3,6 @@ export const site = {
   role: 'Product engineer',
   domain: 'vprusa.com',
   email: 'prusavo@gmail.com',
-  /** Three words. Not a pitch — this page is not selling anything. */
-  intro: 'I build things.',
   title: 'Vojtěch Prusa',
   description:
     'Vojtěch Prusa — product engineer. Projects: Plesica, a spaced-repetition app, and Gymrora, a coaching platform.',
