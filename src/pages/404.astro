@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title={`Page not found — ${site.name}`} description="Nothing at this address." noindex>
+  <main class="wrap error">
+    <p class="tag">Error 404</p>
+    <h1 class="error__title">Nothing here.</h1>
+    <p class="error__note">This address has no page behind it.</p>
+
+    <a class="row" href="/">
+      <span class="row__label">Back to</span>
+      <span class="row__value">{site.domain}</span>
+      <span class="row__arrow" aria-hidden="true">→</span>
+    </a>
+  </main>
+</Base>

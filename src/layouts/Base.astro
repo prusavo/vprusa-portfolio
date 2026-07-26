@@ -1,0 +1,76 @@
+---
+// Self-hosted faces only — no third-party font requests, so the page has a
+// single origin and nothing to block. Archivo is loaded with its width axis
+// (the hero sets font-stretch), Newsreader with its optical-size axis plus
+// italics (used for taglines and the pull quote).
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
+import '@fontsource/martian-mono/400.css';
+import '@fontsource/martian-mono/500.css';
+import '@fontsource/martian-mono/600.css';
+import '../styles/global.css';
+import { site, sameAs } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Keeps a page out of the index — used by 404. */
+  noindex?: boolean;
+}
+
+const { title = site.title, description = site.description, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: `https://${site.domain}`,
+  email: `mailto:${site.email}`,
+  jobTitle: site.role,
+  description: site.description,
+  sameAs,
+};
+
+const siteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  url: `https://${site.domain}`,
+  inLanguage: 'en',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#e9eae4" />
+    <meta name="author" content={site.name} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.domain} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(personLd)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(siteLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
