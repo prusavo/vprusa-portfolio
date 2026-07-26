@@ -61,10 +61,4 @@ export const media = {
     width: 1000,
     height: 1250,
   },
-  /** Keyed transparent, trimmed to the stroke; runs the full viewport width. */
-  ink: {
-    src: '/media/ink-mark.webp',
-    width: 1600,
-    height: 683,
-  },
 } as const;
