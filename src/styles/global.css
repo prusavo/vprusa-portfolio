@@ -103,6 +103,8 @@ img {
   flex-direction: column;
   padding: var(--pad);
   min-height: min(88vh, 46rem);
+  /* The name is sized against THIS panel (cqw), so it can never outgrow it. */
+  container-type: inline-size;
 }
 
 .hero__top {
@@ -114,7 +116,12 @@ img {
   font-family: var(--font-display);
   font-weight: 800;
   font-stretch: 122%;
-  font-size: clamp(3rem, 9.5vw, 7.5rem);
+  /* Sized by the panel, not the viewport: VOJTĚCH is 7 ultra-expanded caps
+     (~0.8em advance each), so ~16% of the panel width per glyph em keeps the
+     word inside the padding at every width. vw clamp is the fallback for
+     browsers without container units. */
+  font-size: clamp(2rem, 8.5vw, 7.5rem);
+  font-size: clamp(2rem, 16cqw, 7.5rem);
   line-height: 0.86;
   letter-spacing: -0.025em;
   text-transform: uppercase;
@@ -165,13 +172,9 @@ img {
 
   .hero__photo {
     order: -1;               /* face first on a phone */
-    aspect-ratio: 5 / 4;
-  }
-
-  .hero__photo img {
-    position: static;
-    aspect-ratio: 5 / 4;
-    object-position: 50% 12%;
+    /* Square: tall enough to keep the hair, short enough that the name panel
+       is still reachable without scrolling past a wall of photo. */
+    aspect-ratio: 1 / 1;
   }
 }
 
@@ -217,8 +220,9 @@ img {
 
 .project__head {
   display: flex;
+  flex-wrap: wrap;              /* domain drops under the name when tight */
   align-items: baseline;
-  gap: 1rem;
+  gap: 0.35rem 1rem;
   min-width: 0;
 }
 
