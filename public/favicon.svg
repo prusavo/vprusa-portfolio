@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Two nodes and the edge between them — the same diagram grammar the page
+       uses for its project figures. -->
+  <rect width="32" height="32" fill="#15171b" />
+  <rect x="8.5" y="6" width="15" height="7" fill="none" stroke="#e9eae4" stroke-width="1.6" />
+  <path d="M16 13.5v5" stroke="#e9eae4" stroke-width="1.6" />
+  <path d="M13.6 16.4 16 19l2.4-2.6" fill="none" stroke="#e9eae4" stroke-width="1.6" />
+  <rect x="8.5" y="19.5" width="15" height="7" fill="#3a2fd6" />
+</svg>

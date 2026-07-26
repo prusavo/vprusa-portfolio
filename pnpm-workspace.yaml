@@ -1,0 +1,6 @@
+# esbuild and sharp ship prebuilt binaries via postinstall scripts; Astro's
+# build needs both, so they are explicitly allowed to run them. pnpm 10.16+
+# reads this here rather than from package.json.
+allowBuilds:
+  esbuild: true
+  sharp: true

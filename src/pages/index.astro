@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import ProjectPlate from '../components/ProjectPlate.astro';
+import { site, ledger } from '../data/site';
+import { projects } from '../data/projects';
+
+const year = new Date().getFullYear();
+---
+
+<Base>
+  <a class="skip" href="#work">Skip to work</a>
+  <Nav />
+
+  <main id="top">
+    <header class="hero shell">
+      <p class="tag" data-reveal style="--d:0.05s">{site.name} · {site.role}</p>
+
+      <h1 class="hero__title" data-reveal style="--d:0.12s">
+        State that survives the network.
+      </h1>
+
+      <p class="hero__lede" data-reveal style="--d:0.22s">
+        I build complete products in strict TypeScript — offline-first clients, hexagonal
+        backends — and I run the infrastructure they live on. Two of them are below: a
+        spaced-repetition app whose reads never touch a server, and a coaching platform where
+        the workout keeps running when the signal drops.
+      </p>
+
+      <div class="ledger" data-reveal style="--d:0.32s">
+        {
+          ledger.map((col) => (
+            <div class="ledger__col">
+              <p class="tag">{col.label}</p>
+              <ul class="ledger__list">
+                {col.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </header>
+
+    <section class="band" id="work" aria-labelledby="work-title">
+      <div class="shell band__inner">
+        <div class="band__rail">
+          <p class="tag">Work</p>
+          <p class="tag">2 systems</p>
+        </div>
+
+        <div>
+          <h2 class="band__title" id="work-title">
+            Two systems, built and operated end to end.
+          </h2>
+          <div class="plates">
+            {projects.map((project) => <ProjectPlate project={project} />)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="about" aria-labelledby="about-title">
+      <div class="shell band__inner">
+        <div class="band__rail">
+          <p class="tag">About</p>
+        </div>
+
+        <div class="prose">
+          <h2 class="band__title" id="about-title">One person, whole systems.</h2>
+
+          <p style="margin-top: 1.5rem">
+            I work best at the boundaries — where a data model meets a UI decision, or where a
+            migration meets an on-call morning. Both projects on this page are mine end to end:
+            schema, API, client, container, dashboard. That is less about being a generalist
+            than about refusing to hand off the seams, because the seams are where products
+            actually break.
+          </p>
+
+          <p class="pull">
+            If a rule matters, a linter should enforce it. Code review is a bad place to store
+            architecture.
+          </p>
+
+          <p>
+            In practice: strict TypeScript with no escape hatches, hexagonal boundaries checked
+            by lint rather than by convention, and deterministic behaviour anywhere a user could
+            otherwise notice randomness. It also means the unglamorous half — pinned images, one
+            Compose stack per service, bind-mounted data that survives a redeploy, and metric
+            and log dashboards that exist before the first incident rather than after it.
+          </p>
+
+          <p>
+            I write Czech and English, work remotely, and maintain every server this runs on
+            myself.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="contact" aria-labelledby="contact-title">
+      <div class="shell band__inner">
+        <div class="band__rail">
+          <p class="tag">Contact</p>
+        </div>
+
+        <div>
+          <h2 class="band__title" id="contact-title">Contact me</h2>
+
+          <p>
+            <a class="contact__mail" href={`mailto:${site.email}`}>{site.email}</a>
+          </p>
+
+          <p class="contact__note">
+            Email is the fastest way to reach me. Instagram if you would rather see the
+            day-to-day.
+          </p>
+
+          <a
+            class="channel"
+            href={site.instagram.url}
+            rel="me noopener noreferrer"
+            target="_blank"
+          >
+            <svg
+              class="channel__icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="4.2"></circle>
+              <circle cx="17.2" cy="6.8" r="1.05" fill="currentColor" stroke="none"></circle>
+            </svg>
+            <span class="channel__label">Instagram</span>
+            <span class="channel__handle">{site.instagram.handle}</span>
+            <span class="channel__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__inner">
+      <p class="tag">© {year} {site.name}</p>
+      <p class="tag">Astro · served from a WireGuard-only Docker stack</p>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal each project plate once, on entry. The plates draw their connector
+    // lines as they arrive — the only scroll-driven motion on the page.
+    const plates = document.querySelectorAll<HTMLElement>('[data-observe]');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reduced && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+              io.unobserve(entry.target);
+            }
+          }
+        },
+        { rootMargin: '0px 0px -10% 0px', threshold: 0.06 }
+      );
+      plates.forEach((plate) => io.observe(plate));
+    } else {
+      plates.forEach((plate) => plate.classList.add('is-in'));
+    }
+  </script>
+</Base>
