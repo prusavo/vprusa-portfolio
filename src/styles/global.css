@@ -62,6 +62,9 @@ body {
 img {
   display: block;
   max-width: 100%;
+  /* Neutralise the width/height attribute hints (kept for layout stability)
+     so CSS sizing — notably aspect-ratio — actually wins. */
+  height: auto;
 }
 
 /* The whole page lives in a capped frame, so on an ultrawide monitor the

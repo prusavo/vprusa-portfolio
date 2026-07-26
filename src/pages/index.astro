@@ -28,36 +28,6 @@ const year = new Date().getFullYear();
     </header>
 
     <div class="wrap">
-      <section class="section" aria-labelledby="projects-label">
-        <p class="tag section__label" id="projects-label">Live projects</p>
-
-        <ul class="list">
-          {
-            projects.map((project) => (
-              <li class="project" style={`--accent:${project.accent}`}>
-                <a
-                  class="project__link"
-                  href={project.url}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <span class="project__head">
-                    <h2 class="project__name">{project.name}</h2>
-                    <span class="project__domain">{project.domain}</span>
-                  </span>
-                  <span class="project__side">
-                    <span class="project__blurb">{project.blurb}</span>
-                    <span class="project__arrow" aria-hidden="true">
-                      →
-                    </span>
-                  </span>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-
       <section class="section" aria-labelledby="about-label">
         <p class="tag section__label" id="about-label">About</p>
 
@@ -87,6 +57,36 @@ const year = new Date().getFullYear();
             )
           }
         </div>
+      </section>
+
+      <section class="section" aria-labelledby="projects-label">
+        <p class="tag section__label" id="projects-label">Live projects</p>
+
+        <ul class="list">
+          {
+            projects.map((project) => (
+              <li class="project" style={`--accent:${project.accent}`}>
+                <a
+                  class="project__link"
+                  href={project.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span class="project__head">
+                    <h2 class="project__name">{project.name}</h2>
+                    <span class="project__domain">{project.domain}</span>
+                  </span>
+                  <span class="project__side">
+                    <span class="project__blurb">{project.blurb}</span>
+                    <span class="project__arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
       </section>
 
       <section class="section" aria-labelledby="contact-label">
