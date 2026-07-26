@@ -278,6 +278,60 @@ img {
   transform: translateX(0.5rem);
 }
 
+/* ------------------------------------------------------------------ about */
+
+.about {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  padding-top: clamp(1.5rem, 4vw, 2.25rem);
+  align-items: start;
+}
+
+@media (min-width: 47rem) {
+  .about {
+    /* Story left, dog right — the same cell grammar as the hero. */
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+}
+
+.about__story p {
+  margin: 0 0 1.2rem;
+  font-size: clamp(1.125rem, 1.4vw + 0.9rem, 1.375rem);
+  line-height: 1.55;
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.about__story p:last-child {
+  margin-bottom: 0;
+}
+
+.about__dog {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+@media (min-width: 47rem) {
+  .about__dog {
+    max-width: 24rem;
+    justify-self: end;
+  }
+}
+
+/* Honest typesetter's plate while the photograph doesn't exist yet. */
+.dogplate {
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+}
+
+.dogplate__label {
+  color: var(--paper-dim);
+  text-align: center;
+  line-height: 2;
+}
+
 /* ------------------------------------------------------------ contact rows */
 
 .row {

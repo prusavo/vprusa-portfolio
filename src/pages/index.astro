@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site, links, media } from '../data/site';
+import { site, links, media, about } from '../data/site';
 import { projects } from '../data/projects';
 
 const year = new Date().getFullYear();
@@ -56,6 +56,37 @@ const year = new Date().getFullYear();
             ))
           }
         </ul>
+      </section>
+
+      <section class="section" aria-labelledby="about-label">
+        <p class="tag section__label" id="about-label">About</p>
+
+        <div class="about">
+          <div class="about__story">
+            {about.story.map((para) => <p>{para}</p>)}
+          </div>
+
+          {
+            media.dog ? (
+              <img
+                class="about__dog"
+                src={media.dog.src}
+                alt={media.dog.alt}
+                width={media.dog.width}
+                height={media.dog.height}
+                loading="lazy"
+              />
+            ) : (
+              <div class="about__dog dogplate" aria-hidden="true">
+                <p class="tag dogplate__label">
+                  Samoyed
+                  <br />
+                  photo pending
+                </p>
+              </div>
+            )
+          }
+        </div>
       </section>
 
       <section class="section" aria-labelledby="contact-label">

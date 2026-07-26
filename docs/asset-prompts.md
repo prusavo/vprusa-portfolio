@@ -147,7 +147,45 @@ Export 800 × 1000 JPEG to `public/media/portrait.jpg`, then point
 `media.portrait.src` in `src/data/site.ts` at the new file (the placeholder is
 `.svg`, so the extension changes).
 
-## 3 & 4 — App screens (do NOT generate)
+## 3 — Samoyed (generate from reference photos of the dog)
+
+Upload several photos of the dog as references, then:
+
+> Use the supplied reference photographs of the same Samoyed dog as the
+> definitive guide to this specific dog's appearance, and generate one new
+> studio portrait of him.
+>
+> **Likeness.** This exact dog: the same face, the same eye shape and colour,
+> the same ear set, the same fur density and any individual markings visible in
+> the references. Do not generate a generic breed photo.
+>
+> **Pose and expression.** Head-and-chest portrait, sitting, facing the camera
+> almost straight on with the classic Samoyed smile — mouth slightly open,
+> relaxed, alert ears. Looking into the lens.
+>
+> **Light and background.** A seamless, perfectly even warm light-grey studio
+> backdrop (#E9EAE4), no vignette, no gradient. One large softbox slightly above
+> and to one side, soft fill opposite: soft directional light with visible
+> texture in the white coat — individual guard hairs sharp, no blown-out fur.
+>
+> **Colour.** Desaturated and cool, low contrast — the coat off-white, not pure
+> white, so detail survives.
+>
+> **Framing.** Vertical 4:5, chest up, eyes about a third from the top.
+>
+> Photographic, not illustrated. No props, no bandana, no text, no border.
+
+Post-processing: run the result through the **same duotone pipeline as the
+portrait** (luma → ink-to-paper ramp), resize to 900 px wide, WebP q80, save as
+`public/media/dog.webp`, then fill `media.dog` in `src/data/site.ts` — the
+"photo pending" plate swaps for the image automatically.
+
+White-coat warning: the duotone maps highlights near paper, so if the generated
+coat is blown out the dog dissolves. Prefer a slightly darker, texture-rich
+generation; if needed, pull the highlight end of the ramp down (HI ≈ #d4d5cd)
+just for this asset.
+
+## 4 — App screens (do NOT generate)
 
 Take real screenshots:
 
