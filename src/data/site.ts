@@ -3,8 +3,8 @@ export const site = {
   role: 'Product engineer',
   domain: 'vprusa.com',
   email: 'prusavo@gmail.com',
-  /** One line of orientation. Not a pitch — this page is not selling anything. */
-  intro: 'I build things for the web. Two of them are below.',
+  /** Three words. Not a pitch — this page is not selling anything. */
+  intro: 'I build things.',
   title: 'Vojtěch Prusa',
   description:
     'Vojtěch Prusa — product engineer. Projects: Plesica, a spaced-repetition app, and Gymrora, a coaching platform.',
@@ -40,3 +40,22 @@ export const links = [
 
 /** Profiles that identify the same person, for structured data. */
 export const sameAs = links.filter((l) => l.external).map((l) => l.href);
+
+/**
+ * Images. Both are placeholders drawn in the page's own palette — swap the file
+ * at the same path (keeping the dimensions) and nothing else needs to change.
+ * Generation prompts live in docs/asset-prompts.md.
+ */
+export const media = {
+  portrait: {
+    src: '/media/portrait.svg',
+    alt: 'Vojtěch Prusa',
+    width: 400,
+    height: 500,
+  },
+  ink: {
+    src: '/media/ink-mark.svg',
+    width: 1200,
+    height: 320,
+  },
+} as const;

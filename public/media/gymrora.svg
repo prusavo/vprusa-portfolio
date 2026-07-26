@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Gymrora app screen">
+  <!-- PLACEHOLDER drawn as real UI — a live session with logged sets and a rest
+       timer. Replace with a genuine screenshot at the same path and 4:3 box. -->
+  <rect width="800" height="600" rx="12" fill="#F4F5F1"/>
+
+  <!-- top bar -->
+  <rect x="28" y="30" width="14" height="14" fill="#0E6B52"/>
+  <rect x="56" y="32" width="128" height="10" rx="5" fill="#15171B" opacity="0.75"/>
+  <rect x="688" y="32" width="84" height="10" rx="5" fill="#15171B" opacity="0.14"/>
+  <line x1="28" y1="70" x2="772" y2="70" stroke="#CBCDC5"/>
+
+  <!-- current exercise -->
+  <rect x="28" y="98" width="286" height="20" rx="10" fill="#15171B" opacity="0.82"/>
+  <rect x="28" y="132" width="170" height="12" rx="6" fill="#15171B" opacity="0.22"/>
+
+  <!-- set rows: the active set is marked with the accent -->
+  <g>
+    <rect x="28" y="176" width="744" height="66" rx="8" fill="#FBFBF9" stroke="#CBCDC5"/>
+    <rect x="28" y="176" width="4" height="66" fill="#15171B" opacity="0.18"/>
+    <rect x="60" y="202" width="34" height="14" rx="7" fill="#15171B" opacity="0.3"/>
+    <rect x="300" y="202" width="70" height="14" rx="7" fill="#15171B" opacity="0.55"/>
+    <rect x="470" y="202" width="70" height="14" rx="7" fill="#15171B" opacity="0.55"/>
+    <circle cx="722" cy="209" r="11" fill="#15171B" opacity="0.14"/>
+
+    <rect x="28" y="256" width="744" height="66" rx="8" fill="#FBFBF9" stroke="#CBCDC5"/>
+    <rect x="28" y="256" width="4" height="66" fill="#15171B" opacity="0.18"/>
+    <rect x="60" y="282" width="34" height="14" rx="7" fill="#15171B" opacity="0.3"/>
+    <rect x="300" y="282" width="70" height="14" rx="7" fill="#15171B" opacity="0.55"/>
+    <rect x="470" y="282" width="70" height="14" rx="7" fill="#15171B" opacity="0.55"/>
+    <circle cx="722" cy="289" r="11" fill="#15171B" opacity="0.14"/>
+
+    <rect x="28" y="336" width="744" height="66" rx="8" fill="#FBFBF9" stroke="#0E6B52"/>
+    <rect x="28" y="336" width="4" height="66" fill="#0E6B52"/>
+    <rect x="60" y="362" width="34" height="14" rx="7" fill="#0E6B52"/>
+    <rect x="300" y="362" width="70" height="14" rx="7" fill="#15171B" opacity="0.55"/>
+    <rect x="470" y="362" width="70" height="14" rx="7" fill="#15171B" opacity="0.2"/>
+    <circle cx="722" cy="369" r="11" fill="none" stroke="#0E6B52" stroke-width="2"/>
+  </g>
+
+  <!-- rest timer -->
+  <rect x="28" y="454" width="744" height="86" rx="10" fill="#0E6B52"/>
+  <rect x="64" y="482" width="112" height="12" rx="6" fill="#F4F5F1" opacity="0.55"/>
+  <rect x="64" y="506" width="168" height="20" rx="10" fill="#F4F5F1" opacity="0.92"/>
+  <rect x="600" y="486" width="136" height="26" rx="13" fill="#F4F5F1" opacity="0.22"/>
+
+  <text x="28" y="576" fill="#5C6269" font-family="ui-monospace, monospace" font-size="13" letter-spacing="2">PLACEHOLDER</text>
+</svg>

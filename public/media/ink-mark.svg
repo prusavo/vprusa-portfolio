@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="presentation">
+  <!-- PLACEHOLDER — a hand-drawn stand-in for the ink mark. Replace with the
+       generated artwork (same path, same 1200x320 box, transparent or paper
+       background). Prompt: docs/asset-prompts.md -->
+  <g fill="none" stroke="#15171B" stroke-linecap="round">
+    <path d="M50 214C246 58 402 292 618 150 800 30 984 262 1150 126" stroke-width="26" opacity="0.88"/>
+    <path d="M74 250C268 118 430 322 640 190 826 74 1000 292 1156 166" stroke-width="7" opacity="0.5"/>
+    <path d="M40 168C238 34 396 250 610 118 796 4 986 214 1148 86" stroke-width="3" opacity="0.32"/>
+    <g stroke-width="2" opacity="0.22">
+      <path d="M188 268C300 214 402 244 486 208"/>
+      <path d="M198 282C310 228 412 258 496 222"/>
+      <path d="M208 296C320 242 422 272 506 236"/>
+      <path d="M700 92C812 38 914 68 998 32"/>
+      <path d="M710 106C822 52 924 82 1008 46"/>
+    </g>
+  </g>
+  <g fill="#15171B" opacity="0.55">
+    <circle cx="176" cy="128" r="5"/>
+    <circle cx="932" cy="212" r="4"/>
+    <circle cx="1094" cy="238" r="6"/>
+  </g>
+</svg>

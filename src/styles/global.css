@@ -60,9 +60,15 @@ svg {
 
 .page {
   width: 100%;
-  max-width: 40rem;
+  max-width: 48rem;
   margin-inline: auto;
   padding: clamp(2.5rem, 9vw, 5.5rem) clamp(1.25rem, 6vw, 2rem) 2.5rem;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 /* Small uppercase mono — every label on the page. */
@@ -78,11 +84,47 @@ svg {
 
 /* ------------------------------------------------------------------ header */
 
+.header {
+  display: grid;
+  gap: 2rem;
+  justify-items: start;
+}
+
+@media (min-width: 40rem) {
+  .header {
+    grid-template-columns: minmax(0, 1fr) 9rem;
+    align-items: start;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+}
+
+.portrait {
+  width: 7.5rem;
+  border: 1px solid var(--rule);
+}
+
+@media (min-width: 40rem) {
+  .portrait {
+    width: 100%;
+  }
+}
+
+/* Ink mark — a drawn gesture under the opening line, closer to a signature than
+   to a banner. Decorative, so it is hidden from assistive tech. */
+.ink {
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.ink img {
+  width: 100%;
+  max-width: 27rem;
+}
+
 .name {
   font-family: var(--font-display);
   font-weight: 800;
   font-stretch: 110%;
-  font-size: clamp(2.5rem, 9vw, 4.25rem);
+  font-size: clamp(2.25rem, 7vw, 3.5rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   margin: 1.5rem 0 0;
@@ -120,8 +162,35 @@ svg {
 /* ----------------------------------------------------------------- entries */
 
 .entry {
-  padding: 1.5rem 0 1.6rem;
   border-bottom: 1px solid var(--rule);
+}
+
+.entry__link {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.75rem 0 2rem;
+  color: inherit;
+  text-decoration: none;
+  align-items: center;
+}
+
+@media (min-width: 40rem) {
+  .entry__link {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  /* Alternate the side the product sits on, so the two entries mirror. */
+  .entry:nth-child(even) .entry__media {
+    order: 2;
+  }
+}
+
+.entry__media img {
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  transition: border-color 0.3s var(--ease);
 }
 
 .entry__head {
@@ -145,13 +214,39 @@ svg {
   line-height: 1;
   letter-spacing: -0.022em;
   margin: 0;
+  transition: color 0.25s var(--ease);
+}
+
+.entry__arrow {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--graphite);
+  transition: transform 0.3s var(--ease), color 0.25s var(--ease);
 }
 
 .entry__blurb {
-  margin: 0.6rem 0 0;
+  margin: 0.65rem 0 0;
   color: var(--graphite);
-  max-width: 38ch;
+  max-width: 34ch;
   text-wrap: pretty;
+}
+
+/* Hovering an entry is the only time its colour reaches the type. */
+.entry__link:hover .entry__name,
+.entry__link:focus-visible .entry__name {
+  color: var(--accent);
+}
+
+.entry__link:hover .entry__arrow,
+.entry__link:focus-visible .entry__arrow {
+  transform: translateX(0.35rem);
+  color: var(--accent);
+}
+
+.entry__link:hover .entry__media img,
+.entry__link:focus-visible .entry__media img {
+  border-color: var(--accent);
 }
 
 /* -------------------------------------------------------------- link rows */

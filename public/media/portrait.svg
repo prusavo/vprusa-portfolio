@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500" role="img" aria-label="Portrait placeholder">
+  <!-- PLACEHOLDER — replace with the retouched studio portrait (same path,
+       same 4:5 ratio). Prompt: docs/asset-prompts.md -->
+  <rect width="400" height="500" fill="#E9EAE4"/>
+  <g fill="#15171B" opacity="0.1">
+    <circle cx="200" cy="196" r="74"/>
+    <path d="M60 500c0-79 63-134 140-134s140 55 140 134z"/>
+  </g>
+  <rect x="0.5" y="0.5" width="399" height="499" fill="none" stroke="#CBCDC5"/>
+  <text x="20" y="478" fill="#5C6269" font-family="ui-monospace, monospace" font-size="13" letter-spacing="2">PORTRAIT · PLACEHOLDER</text>
+</svg>
