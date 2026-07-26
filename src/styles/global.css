@@ -1,16 +1,20 @@
 /*
- * vprusa.com — a signpost page.
+ * vprusa.com — a calling card.
  *
- * One centred column: who I am, what I've built, how to reach me. Ink on cool
- * oat paper, a wide grotesque for the names, a serif for the sentences, a wide
- * mono for labels. No JavaScript.
+ * One page, one job: who this is, the two things he's built, how to reach him.
  *
- * The one rule worth keeping: the page is monochrome and colour belongs to the
- * projects — each entry sets --accent and nothing else does.
+ * The composition rule: the hero is a single object, not a stack of floating
+ * ones. The name and the cut-out portrait share a baseline, and the ink stroke
+ * runs the full width directly beneath them — it is the ground they stand on,
+ * which is also why it is a structural element rather than decoration.
+ *
+ * Colour rule: the page is monochrome and colour belongs to the projects. Each
+ * entry sets --accent; nothing else on the page does.
  */
 
 :root {
   --paper: #e9eae4;
+  --card: #f0f1eb;
   --ink: #15171b;
   --graphite: #5c6269;
   --rule: #cbcdc5;
@@ -54,24 +58,19 @@ body {
   outline-offset: 3px;
 }
 
-svg {
-  display: block;
-}
-
-.page {
-  width: 100%;
-  max-width: 48rem;
-  margin-inline: auto;
-  padding: clamp(2.5rem, 9vw, 5.5rem) clamp(1.25rem, 6vw, 2rem) 2.5rem;
-}
-
 img {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-/* Small uppercase mono — every label on the page. */
+.page {
+  width: 100%;
+  max-width: 52rem;
+  margin-inline: auto;
+  padding: clamp(2.25rem, 8vw, 4.5rem) clamp(1.25rem, 6vw, 2rem) 3rem;
+}
+
 .tag {
   font-family: var(--font-mono);
   font-size: 0.625rem;
@@ -82,70 +81,57 @@ img {
   margin: 0;
 }
 
-/* ------------------------------------------------------------------ header */
+/* -------------------------------------------------------------------- hero */
 
-.header {
+.hero {
   display: grid;
-  gap: 2rem;
-  justify-items: start;
-}
-
-@media (min-width: 40rem) {
-  .header {
-    grid-template-columns: minmax(0, 1fr) 9rem;
-    align-items: start;
-    gap: clamp(1.5rem, 4vw, 2.5rem);
-  }
-}
-
-.portrait {
-  width: 7.5rem;
-  border: 1px solid var(--rule);
-}
-
-@media (min-width: 40rem) {
-  .portrait {
-    width: 100%;
-  }
-}
-
-/* Ink mark — a drawn gesture under the opening line, closer to a signature than
-   to a banner. Decorative, so it is hidden from assistive tech. */
-.ink {
-  margin-top: clamp(1.5rem, 4vw, 2.25rem);
-}
-
-.ink img {
-  width: 100%;
-  max-width: 27rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: clamp(0.75rem, 3vw, 2rem);
 }
 
 .name {
   font-family: var(--font-display);
   font-weight: 800;
-  font-stretch: 110%;
-  font-size: clamp(2.25rem, 7vw, 3.5rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  margin: 1.5rem 0 0;
+  font-stretch: 112%;
+  font-size: clamp(2.5rem, 10.5vw, 4.75rem);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  margin: 0.9rem 0 0;
 }
 
 .role {
-  margin-top: 0.85rem;
+  margin-top: 0.9rem;
 }
 
 .intro {
-  margin: 1.75rem 0 0;
-  font-size: clamp(1.125rem, 1vw + 1rem, 1.3125rem);
-  line-height: 1.5;
-  max-width: 42ch;
-  text-wrap: pretty;
+  margin: 1.1rem 0 0;
+  font-size: clamp(1.125rem, 1vw + 1rem, 1.375rem);
+  line-height: 1.4;
+}
+
+/* Cut out onto the paper — no frame, no backdrop of its own. The negative
+   bottom margin lets him stand on the stroke rather than hover above it. */
+.hero__portrait {
+  width: clamp(7.5rem, 27vw, 15.5rem);
+  margin-bottom: -0.4rem;
+  justify-self: end;
+}
+
+/* The ink stroke as the hero's ground line. Cropped to a band so it reads as a
+   rule spanning the page, not as a picture of a brushstroke. */
+.ground {
+  width: 100%;
+  height: clamp(4.5rem, 11vw, 8rem);
+  object-fit: cover;
+  object-position: center 46%;
+  margin-top: 0.25rem;
 }
 
 /* ----------------------------------------------------------------- section */
 
 .section {
-  margin-top: clamp(3rem, 9vw, 4.5rem);
+  margin-top: clamp(2.75rem, 8vw, 4.25rem);
 }
 
 .section__label {
@@ -180,7 +166,7 @@ img {
     gap: clamp(1.5rem, 4vw, 2.5rem);
   }
 
-  /* Alternate the side the product sits on, so the two entries mirror. */
+  /* Alternate which side the product sits on, so the two entries mirror. */
   .entry:nth-child(even) .entry__media {
     order: 2;
   }
@@ -188,9 +174,8 @@ img {
 
 .entry__media img {
   width: 100%;
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  transition: border-color 0.3s var(--ease);
+  border-radius: 6px;
+  transition: opacity 0.3s var(--ease);
 }
 
 .entry__head {
@@ -246,7 +231,7 @@ img {
 
 .entry__link:hover .entry__media img,
 .entry__link:focus-visible .entry__media img {
-  border-color: var(--accent);
+  opacity: 0.88;
 }
 
 /* -------------------------------------------------------------- link rows */
@@ -314,8 +299,6 @@ img {
 
 /* ------------------------------------------------------------------ footer */
 
-/* The last row already ends on a rule, so the footer only needs breathing room,
-   not another divider. */
 .footer {
   margin-top: 2rem;
 }

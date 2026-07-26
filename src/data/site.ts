@@ -50,15 +50,17 @@ export const sameAs = links.filter((l) => l.external).map((l) => l.href);
  * through, so it stays correct whatever the paper colour becomes.
  */
 export const media = {
+  /** Cut out of its studio backdrop so it sits directly on the paper. */
   portrait: {
     src: '/media/portrait.webp',
     alt: 'Vojtěch Prusa',
-    width: 600,
-    height: 750,
+    width: 700,
+    height: 772,
   },
+  /** Trimmed to the stroke, so it spans its box edge to edge. */
   ink: {
     src: '/media/ink-mark.webp',
-    width: 900,
-    height: 384,
+    width: 1100,
+    height: 469,
   },
 } as const;

@@ -17,8 +17,24 @@ Replace a file at the same path and the layout is unchanged.
 
 Both originals were multi-megabyte PNGs; they ship as WebP.
 
-- **Portrait** — resize to 600 px wide, WebP q82. That is ~24 kB and covers a 3×
-  display at the 9rem it is shown at.
+- **Portrait** — the generated backdrop came out a mid warm grey, not the
+  requested `#E9EAE4`, which read as a photo pasted onto the page. So the
+  backdrop is **cut away entirely** and he stands directly on the paper:
+
+  1. Flood-fill from the frame edge, keeping only pixels close to the backdrop
+     colour. Connectivity matters — skin is tonally close to the backdrop, but
+     it is never connected to the border, so it survives.
+  2. Add a chroma guard: the backdrop is neutral (`|R−G| ≤ 22`, `|R−B| ≤ 34`),
+     skin is warm. Without it the flood bridges through a lit cheek and eats a
+     hole in the face.
+  3. Grow the cut 1 px into the backdrop, blur ~1.3 px for a soft edge.
+  4. Desaturate to 50 % so he sits in the muted palette.
+  5. Fade the bottom 42 % out with a smoothstep ramp — the photo's own hard
+     bottom and shoulder crops are what made him look like a sticker.
+  6. Trim, resize to 700 px, WebP q84 → ~45 kB.
+
+  Invert the mask in plain JS, not with sharp's `negate()` — see the ordering
+  trap below.
 - **Ink mark** — the scan's paper sat two or three levels below `#E9EAE4`, which
   showed on the page as a faint rectangle. Colour-matching it is brittle, so the
   paper is **keyed out to transparency** instead: luminance becomes the alpha

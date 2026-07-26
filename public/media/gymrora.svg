@@ -1,47 +1,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Gymrora app screen">
-  <!-- PLACEHOLDER drawn as real UI — a live session with logged sets and a rest
-       timer. Replace with a genuine screenshot at the same path and 4:3 box. -->
-  <rect width="800" height="600" rx="12" fill="#F4F5F1"/>
+  <!-- PLACEHOLDER drawn as real UI, toned to the page palette so it sits on the
+       paper instead of shouting. Replace with a real screenshot, 4:3. -->
+  <rect width="800" height="600" rx="8" fill="#f0f1eb"/>
+  <rect x="0.5" y="0.5" width="799" height="599" rx="8" fill="none" stroke="#cbcdc5"/>
 
-  <!-- top bar -->
-  <rect x="28" y="30" width="14" height="14" fill="#0E6B52"/>
-  <rect x="56" y="32" width="128" height="10" rx="5" fill="#15171B" opacity="0.75"/>
-  <rect x="688" y="32" width="84" height="10" rx="5" fill="#15171B" opacity="0.14"/>
-  <line x1="28" y1="70" x2="772" y2="70" stroke="#CBCDC5"/>
+  <rect x="30" y="32" width="12" height="12" fill="#0e6b52"/>
+  <rect x="54" y="34" width="120" height="8" rx="4" fill="#15171b" opacity="0.45"/>
+  <rect x="694" y="34" width="76" height="8" rx="4" fill="#15171b" opacity="0.1"/>
+  <line x1="30" y1="70" x2="770" y2="70" stroke="#cbcdc5"/>
 
-  <!-- current exercise -->
-  <rect x="28" y="98" width="286" height="20" rx="10" fill="#15171B" opacity="0.82"/>
-  <rect x="28" y="132" width="170" height="12" rx="6" fill="#15171B" opacity="0.22"/>
+  <rect x="30" y="98" width="268" height="17" rx="8" fill="#15171b" opacity="0.62"/>
+  <rect x="30" y="130" width="158" height="11" rx="5" fill="#15171b" opacity="0.18"/>
 
-  <!-- set rows: the active set is marked with the accent -->
   <g>
-    <rect x="28" y="176" width="744" height="66" rx="8" fill="#FBFBF9" stroke="#CBCDC5"/>
-    <rect x="28" y="176" width="4" height="66" fill="#15171B" opacity="0.18"/>
-    <rect x="60" y="202" width="34" height="14" rx="7" fill="#15171B" opacity="0.3"/>
-    <rect x="300" y="202" width="70" height="14" rx="7" fill="#15171B" opacity="0.55"/>
-    <rect x="470" y="202" width="70" height="14" rx="7" fill="#15171B" opacity="0.55"/>
-    <circle cx="722" cy="209" r="11" fill="#15171B" opacity="0.14"/>
+    <rect x="30.5" y="176.5" width="739" height="63" rx="6" fill="#f6f7f2" stroke="#cbcdc5"/>
+    <rect x="30" y="176" width="3" height="64" fill="#15171b" opacity="0.14"/>
+    <rect x="62" y="201" width="30" height="12" rx="6" fill="#15171b" opacity="0.24"/>
+    <rect x="300" y="201" width="64" height="12" rx="6" fill="#15171b" opacity="0.42"/>
+    <rect x="464" y="201" width="64" height="12" rx="6" fill="#15171b" opacity="0.42"/>
+    <circle cx="722" cy="208" r="10" fill="#15171b" opacity="0.1"/>
 
-    <rect x="28" y="256" width="744" height="66" rx="8" fill="#FBFBF9" stroke="#CBCDC5"/>
-    <rect x="28" y="256" width="4" height="66" fill="#15171B" opacity="0.18"/>
-    <rect x="60" y="282" width="34" height="14" rx="7" fill="#15171B" opacity="0.3"/>
-    <rect x="300" y="282" width="70" height="14" rx="7" fill="#15171B" opacity="0.55"/>
-    <rect x="470" y="282" width="70" height="14" rx="7" fill="#15171B" opacity="0.55"/>
-    <circle cx="722" cy="289" r="11" fill="#15171B" opacity="0.14"/>
+    <rect x="30.5" y="254.5" width="739" height="63" rx="6" fill="#f6f7f2" stroke="#cbcdc5"/>
+    <rect x="30" y="254" width="3" height="64" fill="#15171b" opacity="0.14"/>
+    <rect x="62" y="279" width="30" height="12" rx="6" fill="#15171b" opacity="0.24"/>
+    <rect x="300" y="279" width="64" height="12" rx="6" fill="#15171b" opacity="0.42"/>
+    <rect x="464" y="279" width="64" height="12" rx="6" fill="#15171b" opacity="0.42"/>
+    <circle cx="722" cy="286" r="10" fill="#15171b" opacity="0.1"/>
 
-    <rect x="28" y="336" width="744" height="66" rx="8" fill="#FBFBF9" stroke="#0E6B52"/>
-    <rect x="28" y="336" width="4" height="66" fill="#0E6B52"/>
-    <rect x="60" y="362" width="34" height="14" rx="7" fill="#0E6B52"/>
-    <rect x="300" y="362" width="70" height="14" rx="7" fill="#15171B" opacity="0.55"/>
-    <rect x="470" y="362" width="70" height="14" rx="7" fill="#15171B" opacity="0.2"/>
-    <circle cx="722" cy="369" r="11" fill="none" stroke="#0E6B52" stroke-width="2"/>
+    <rect x="30.5" y="332.5" width="739" height="63" rx="6" fill="#f6f7f2" stroke="#0e6b52"/>
+    <rect x="30" y="332" width="3" height="64" fill="#0e6b52"/>
+    <rect x="62" y="357" width="30" height="12" rx="6" fill="#0e6b52"/>
+    <rect x="300" y="357" width="64" height="12" rx="6" fill="#15171b" opacity="0.42"/>
+    <rect x="464" y="357" width="64" height="12" rx="6" fill="#15171b" opacity="0.16"/>
+    <circle cx="722" cy="364" r="10" fill="none" stroke="#0e6b52" stroke-width="1.6"/>
   </g>
 
-  <!-- rest timer -->
-  <rect x="28" y="454" width="744" height="86" rx="10" fill="#0E6B52"/>
-  <rect x="64" y="482" width="112" height="12" rx="6" fill="#F4F5F1" opacity="0.55"/>
-  <rect x="64" y="506" width="168" height="20" rx="10" fill="#F4F5F1" opacity="0.92"/>
-  <rect x="600" y="486" width="136" height="26" rx="13" fill="#F4F5F1" opacity="0.22"/>
+  <rect x="30" y="448" width="740" height="82" rx="6" fill="#0e6b52"/>
+  <rect x="66" y="474" width="104" height="10" rx="5" fill="#f0f1eb" opacity="0.5"/>
+  <rect x="66" y="498" width="156" height="17" rx="8" fill="#f0f1eb" opacity="0.9"/>
+  <rect x="612" y="478" width="124" height="24" rx="12" fill="#f0f1eb" opacity="0.2"/>
 
-  <text x="28" y="576" fill="#5C6269" font-family="ui-monospace, monospace" font-size="13" letter-spacing="2">PLACEHOLDER</text>
+  <text x="30" y="573" fill="#5c6269" font-family="ui-monospace, monospace" font-size="11" letter-spacing="2" opacity="0.75">PLACEHOLDER</text>
 </svg>

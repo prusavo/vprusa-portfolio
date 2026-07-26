@@ -8,16 +8,16 @@ const year = new Date().getFullYear();
 
 <Base>
   <main class="page">
-    <header class="header">
+    <header class="hero">
       <div data-reveal style="--d:0.05s">
         <p class="tag">{site.domain}</p>
-        <h1 class="name">{site.name}</h1>
+        <h1 class="name">Vojtěch<br />Prusa</h1>
         <p class="tag role">{site.role}</p>
         <p class="intro">{site.intro}</p>
       </div>
 
       <img
-        class="portrait"
+        class="hero__portrait"
         src={media.portrait.src}
         alt={media.portrait.alt}
         width={media.portrait.width}
@@ -27,15 +27,16 @@ const year = new Date().getFullYear();
       />
     </header>
 
-    <div class="ink" data-reveal style="--d:0.24s">
-      <img
-        src={media.ink.src}
-        alt=""
-        aria-hidden="true"
-        width={media.ink.width}
-        height={media.ink.height}
-      />
-    </div>
+    <img
+      class="ground"
+      src={media.ink.src}
+      alt=""
+      aria-hidden="true"
+      width={media.ink.width}
+      height={media.ink.height}
+      data-reveal
+      style="--d:0.24s"
+    />
 
     <section class="section" aria-labelledby="projects-label">
       <p class="tag section__label" id="projects-label">Live projects</p>
