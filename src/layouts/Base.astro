@@ -10,7 +10,7 @@ import '@fontsource/martian-mono/400.css';
 import '@fontsource/martian-mono/500.css';
 import '@fontsource/martian-mono/600.css';
 import '../styles/global.css';
-import { site } from '../data/site';
+import { site, sameAs } from '../data/site';
 
 interface Props {
   title?: string;
@@ -30,16 +30,7 @@ const personLd = {
   email: `mailto:${site.email}`,
   jobTitle: site.role,
   description: site.description,
-  sameAs: [site.instagram.url],
-  knowsAbout: [
-    'TypeScript',
-    'React',
-    'Node.js',
-    'PostgreSQL',
-    'Offline-first architecture',
-    'Docker',
-    'System architecture',
-  ],
+  sameAs,
 };
 
 const siteLd = {
@@ -75,12 +66,6 @@ const siteLd = {
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-
-    <script is:inline>
-      // Marks JS as available so the scroll-reveal styles can hide plates. With
-      // no JS the class never lands and everything renders visible.
-      document.documentElement.classList.add('js');
-    </script>
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(personLd)} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(siteLd)} />

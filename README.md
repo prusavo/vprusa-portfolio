@@ -1,7 +1,7 @@
 # vprusa.com
 
-Personal portfolio: what I do, two project case studies (Plesica, Gymrora), and
-how to reach me. Static Astro build, served by nginx from a Docker container.
+A signpost page: who I am, the projects I'm building, and how to reach me.
+Static Astro build served by nginx. **No JavaScript ships to the browser.**
 
 Currently deployed **WireGuard-only** at <http://10.13.13.1:1342> — the stack
 lives on the VPS at `/opt/stacks/vprusa-web/` (see its README for operations).
@@ -28,50 +28,40 @@ cd /opt/stacks/vprusa-web && ./deploy-local.sh
 ```
 
 Pulls, rebuilds the image (multi-stage — `node:24-alpine` builds, then
-`nginx:1.27-alpine` serves ~1 MB of output) and restarts the container. The
-container is stateless, so a deploy is just a rebuild.
+`nginx:1.27-alpine` serves ~1 MB, mostly self-hosted fonts) and restarts the
+container. It is stateless, so a deploy is just a rebuild.
 
-## Structure
+## Editing the content
 
-```
-src/data/site.ts        identity, contact, hero ledger
-src/data/projects.ts    project content: prose, system figure, spec table
-src/layouts/Base.astro  head, SEO meta, JSON-LD (Person + WebSite)
-src/components/         Nav, ProjectPlate, SystemFigure
-src/styles/global.css   the whole design system
-Dockerfile, nginx.conf  build + serve
-```
+Everything on the page comes from two files:
 
-Adding a project means appending to `projects.ts` — a `figure` (the one
-architectural idea, as a labelled flow) and a `spec` table. No component work.
+- `src/data/site.ts` — name, role, the intro line, and the contact rows. Add a
+  link to `links` and it appears on the page; external ones are automatically
+  picked up as schema.org `sameAs`.
+- `src/data/projects.ts` — a project is a name, one sentence, and the colour it
+  owns. Nothing else.
+
+`src/styles/global.css` is the whole design system; `src/layouts/Base.astro`
+holds the head, meta tags and JSON-LD.
 
 ## Design notes
 
-The direction is an engineering datasheet: ink on cool oat paper, a wide
-grotesque (Archivo) for display, a serif (Newsreader) for prose — deliberately
-the inverse of the usual pairing — and a wide mono (Martian Mono) for labels and
-data. All three faces are self-hosted, so the page makes no third-party requests.
+Ink on cool oat paper, in one centred column. Archivo (wide grotesque) for
+names, Newsreader (serif) for sentences, Martian Mono for labels — all
+self-hosted, so the page makes no third-party requests.
 
-Two rules hold the page together:
+The one rule worth keeping: **the page is monochrome and colour belongs to the
+projects.** Each entry sets `--accent` and nothing else on the page does.
 
-1. **The chrome is monochrome; colour belongs to the projects.** Each project
-   plate sets `--accent` and nothing else on the page ever does.
-2. **Diagrams instead of screenshots.** Each project renders the same two
-   devices — a system figure showing where its state actually lives, and a spec
-   table. That figure is the page's signature.
-
-Motion is limited to a hero load stagger, one scroll reveal per plate (the
-connectors draw themselves), and link hovers. `prefers-reduced-motion` turns all
-of it off, and the reveal styles are scoped to `html.js` so the content is
-visible without JavaScript.
+Motion is a single fade-and-rise on load, in CSS, disabled under
+`prefers-reduced-motion`.
 
 ## SEO
 
-Canonical URLs, per-page title/description, OpenGraph + Twitter tags, JSON-LD
-`Person` (with `sameAs` → Instagram) and `WebSite`, a generated
-`sitemap-index.xml`, `robots.txt`, and a real 404 that returns 404 (no SPA
-fallback answering 200 with the homepage).
+Canonical URL, title/description, OpenGraph + Twitter tags, JSON-LD `Person`
+(with `sameAs` → Instagram, LinkedIn) and `WebSite`, a generated
+`sitemap-index.xml`, `robots.txt`, and a 404 that really returns 404.
 
-Not done yet: OG share images, and a Czech version — the site is English-only
-for now. Going public needs `vprusa.com` DNS pointed at the box (it still
-resolves to Afternic parking) and a TLS reverse proxy in front of this nginx.
+Not done: OG share images, and a Czech version — the page is English-only.
+Going public needs `vprusa.com` DNS pointed at the box (it still resolves to
+Afternic parking) and a TLS reverse proxy in front of this nginx.

@@ -1,38 +1,42 @@
 export const site = {
   name: 'Vojtěch Prusa',
-  role: 'Full-stack engineer',
+  role: 'Product engineer',
   domain: 'vprusa.com',
   email: 'prusavo@gmail.com',
-  instagram: {
-    handle: '@vojtapru__',
-    url: 'https://www.instagram.com/vojtapru__/',
-  },
-  /** <title> — carries the name/role that the display headline deliberately doesn't. */
-  title: 'Vojtěch Prusa — full-stack engineer',
+  /** One line of orientation. Not a pitch — this page is not selling anything. */
+  intro: 'I build things for the web. Two of them are below.',
+  title: 'Vojtěch Prusa',
   description:
-    'Full-stack engineer building complete products in strict TypeScript — offline-first clients, hexagonal backends, and the Docker infrastructure they run on. Projects: Plesica and Gymrora.',
+    'Vojtěch Prusa — product engineer. Projects: Plesica, a spaced-repetition app, and Gymrora, a coaching platform.',
 } as const;
 
-/** Hero ledger: what he builds with, and what he runs it on. Two real columns. */
-export const ledger = [
+const instagram = 'https://www.instagram.com/vojtapru__/';
+const linkedin = 'https://www.linkedin.com/in/vojt%C4%9Bch-pr%C5%AF%C5%A1a-a5043722b/';
+
+/**
+ * The contact rows, in order. Add a link here and it appears on the page —
+ * external ones are also picked up as schema.org `sameAs` (see below).
+ */
+export const links = [
   {
-    label: 'Builds with',
-    items: [
-      'TypeScript, maximum strictness',
-      'React 19 · Vite · TanStack Query',
-      'Fastify · Express 5, hexagonal',
-      'Drizzle ORM · PostgreSQL',
-      'Zod · Vitest · Playwright',
-    ],
+    label: 'Email',
+    value: site.email,
+    href: `mailto:${site.email}`,
+    external: false,
   },
   {
-    label: 'Runs it on',
-    items: [
-      'Docker Compose, one stack per service',
-      'WireGuard-only ingress',
-      'Grafana · Loki · Prometheus',
-      'MinIO, S3-compatible storage',
-      'GitHub Actions CI',
-    ],
+    label: 'Instagram',
+    value: '@vojtapru__',
+    href: instagram,
+    external: true,
+  },
+  {
+    label: 'LinkedIn',
+    value: 'in/vojtěch-průša',
+    href: linkedin,
+    external: true,
   },
 ] as const;
+
+/** Profiles that identify the same person, for structured data. */
+export const sameAs = links.filter((l) => l.external).map((l) => l.href);
