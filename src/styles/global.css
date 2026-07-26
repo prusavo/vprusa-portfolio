@@ -292,8 +292,10 @@ img {
 
 @media (min-width: 47rem) {
   .about {
-    /* Story left, dog right — the same cell grammar as the hero. */
+    /* Story left, dog right — the same cell grammar as the hero. The story is
+       shorter than the plate, so centring it kills the dead corner. */
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
   }
 }
 
@@ -309,30 +311,37 @@ img {
   margin-bottom: 0;
 }
 
-.about__dog {
+/* The dog as a labelled plate: photograph over a mono caption row, tied to the
+   page by the same hairline the rest of the system uses. */
+.dogfig {
+  margin: 0;
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
 }
 
 @media (min-width: 47rem) {
-  .about__dog {
+  .dogfig {
     max-width: 24rem;
     justify-self: end;
   }
 }
 
-/* Honest typesetter's plate while the photograph doesn't exist yet. */
-.dogplate {
-  background: var(--ink);
-  display: grid;
-  place-items: center;
+.dogfig img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
 }
 
-.dogplate__label {
-  color: var(--paper-dim);
-  text-align: center;
-  line-height: 2;
+.dogfig__caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.8rem;
+  margin-top: 0.8rem;
+  border-top: 1px solid var(--rule);
+}
+
+.dogfig__name {
+  color: var(--ink);
 }
 
 /* ------------------------------------------------------------ contact rows */

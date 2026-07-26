@@ -37,23 +37,20 @@ const year = new Date().getFullYear();
           </div>
 
           {
-            media.dog ? (
-              <img
-                class="about__dog"
-                src={media.dog.src}
-                alt={media.dog.alt}
-                width={media.dog.width}
-                height={media.dog.height}
-                loading="lazy"
-              />
-            ) : (
-              <div class="about__dog dogplate" aria-hidden="true">
-                <p class="tag dogplate__label">
-                  Samoyed
-                  <br />
-                  photo pending
-                </p>
-              </div>
+            media.dog && (
+              <figure class="dogfig">
+                <img
+                  src={media.dog.src}
+                  alt={media.dog.alt}
+                  width={media.dog.width}
+                  height={media.dog.height}
+                  loading="lazy"
+                />
+                <figcaption class="dogfig__caption">
+                  <span class="tag dogfig__name">Maggie</span>
+                  <span class="tag">Samoyed</span>
+                </figcaption>
+              </figure>
             )
           }
         </div>

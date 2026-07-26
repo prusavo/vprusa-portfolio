@@ -180,10 +180,11 @@ portrait** (luma → ink-to-paper ramp), resize to 900 px wide, WebP q80, save a
 `public/media/dog.webp`, then fill `media.dog` in `src/data/site.ts` — the
 "photo pending" plate swaps for the image automatically.
 
-White-coat warning: the duotone maps highlights near paper, so if the generated
-coat is blown out the dog dissolves. Prefer a slightly darker, texture-rich
-generation; if needed, pull the highlight end of the ramp down (HI ≈ #d4d5cd)
-just for this asset.
+White-coat note: the shipped asset uses the **same ramp as the portrait**
+(HI #DDDED6) plus a light pre-duotone sharpen (sigma 0.5) — one tonal system
+for both photographs. The dissolve worry only applies to cutouts; as a
+rectangle the coat reads against the photo's own backdrop, not the paper. Only
+drop the ramp (HI ≈ #d4d5cd) if a regenerated coat comes back truly blown out.
 
 ## 4 — App screens (do NOT generate)
 
