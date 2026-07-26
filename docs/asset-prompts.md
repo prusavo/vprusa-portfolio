@@ -9,7 +9,7 @@ Replace a file at the same path and the layout is unchanged.
 | Slot | Path | Box | Source |
 |---|---|---|---|
 | Ink mark | `public/media/ink-mark.svg` | 1200 × 320, displayed ≤ 27rem wide | AI-generated |
-| Portrait | `public/media/portrait.svg` | 400 × 500 (4:5) | Retouched photo of me |
+| Portrait | `public/media/portrait.svg` | 400 × 500 (4:5) | Generated from 6 reference photos of me |
 | Plesica screen | `public/media/plesica.svg` | 800 × 600 (4:3) | Real screenshot |
 | Gymrora screen | `public/media/gymrora.svg` | 800 × 600 (4:3) | Real screenshot |
 
@@ -42,30 +42,71 @@ Notes: ask for a **transparent or flat #E9EAE4 background** — anything white
 will show as a rectangle against the page. Export as SVG if the tool can, else a
 transparent PNG at 2400 × 640.
 
-## 2 — Portrait (edit an existing photo of me)
+## 2 — Portrait (generate from reference photos of me)
 
-Feed it a decent, sharp photo of yourself, ideally head-and-shoulders, then:
+Upload **six photos of your face from different angles** as references, then ask
+for one new portrait. The references are there to lock the likeness — the output
+is a new photo, not a retouch of any single input.
 
-> Edit this photograph into a clean studio portrait. Keep the person's face,
-> expression, hair and clothing exactly as they are — do not restyle, beautify,
-> slim, or alter the likeness in any way. Replace the background with a
-> seamless, perfectly even warm light-grey studio backdrop (#E9EAE4), no
-> vignette, no gradient, no visible seam. Relight the subject as if by a large
-> softbox slightly above and to one side: soft directional light, gentle falloff,
-> soft-edged shadows, no harsh specular highlights, no blown-out skin. Grade the
-> whole image cool and muted to match the backdrop — desaturated, low contrast,
-> natural skin tone with the saturation pulled well back, close to a warm
-> monochrome without being fully black and white. Crop to a 4:5 vertical
-> head-and-shoulders frame with the eyes about a third from the top and a little
-> space above the head. Sharp focus on the eyes, natural skin texture retained
-> — no smoothing, no plastic retouching, no beauty filter. No props, no text, no
-> border.
+> Use the supplied reference photographs of the same man, shot from several
+> angles, as the definitive guide to his identity, and generate one new studio
+> portrait of him.
+>
+> **Likeness — the priority.** His face must stay unmistakably his: the same bone
+> structure, the same eyes, nose, mouth and jawline, the same skin tone, the same
+> apparent age, the same facial hair. Do not slim the face, sharpen the jaw,
+> enlarge the eyes, or idealise the features in any way. Keep real skin texture,
+> pores and natural asymmetry.
+>
+> **Expression.** Head and shoulders, facing the camera almost straight on with
+> the head turned very slightly to one side, chin level, shoulders relaxed. A
+> genuine, warm, closed-lip smile that reaches the eyes — relaxed and friendly,
+> not a wide grin or a posed grin. Eyes looking directly into the lens.
+>
+> **Hair.** The same haircut, hairline and colour as in the references, simply
+> well groomed: tidy, clean, naturally arranged, no stray or frizzy strands, no
+> flyaways. Do not change the length or the style, and do not add hair where
+> there is none.
+>
+> **Clothing.** A plain, well-fitting dark top with a simple neckline. No logos,
+> no patterns, no busy detail.
+>
+> **Light and background.** A seamless, perfectly even warm light-grey studio
+> backdrop (#E9EAE4) — no vignette, no gradient, no visible seam. Lit by a large
+> softbox slightly above and to one side with a soft fill opposite: soft
+> directional light, gentle falloff, soft-edged shadows, small natural catchlights
+> in the eyes, no harsh specular highlights, no blown-out skin.
+>
+> **Colour.** Graded cool and muted to match the backdrop — desaturated, low
+> contrast, natural skin tone with the saturation pulled well back, close to a
+> warm monochrome without being fully black and white.
+>
+> **Framing.** Vertical 4:5 crop, head and shoulders, eyes about one third from
+> the top, a little space above the head.
+>
+> Photographic, not illustrated. Sharp focus on the eyes, natural skin texture
+> retained — no smoothing, no plastic retouching, no beauty filter, no AI gloss.
+> No props, no text, no border.
 
-Notes: the two things that make it *sit* on the page are the exact backdrop
-colour and the pulled-back saturation. If it still looks like a photo pasted
-onto the page, desaturate further rather than adding effects. Export 800 × 1000
-JPEG, then update `media.portrait.src` in `src/data/site.ts` to the new
-extension.
+**Which six references to send.** Straight on, three-quarter left, three-quarter
+right, near profile, one slightly from above, one slightly from below. Even
+daylight, no sunglasses, no hat, nothing across the face, and all reasonably
+recent so the age matches.
+
+**Failure modes, in the order they bite:**
+
+1. *Identity drift* — the face comes back generically handsome and not quite
+   yours. Generate several and pick on likeness first, aesthetics second; if all
+   of them drift, add “the face must match the references exactly” and re-run.
+2. *Airbrushed skin* — ask for “more visible skin texture and pores, less
+   retouching”.
+3. *Wrong smile* — “a smaller, softer closed-lip smile” usually fixes a grin.
+4. *Photo sitting on top of the page* rather than in it — desaturate further and
+   check the backdrop is the exact `#E9EAE4`. Don't fix this with effects.
+
+Export 800 × 1000 JPEG to `public/media/portrait.jpg`, then point
+`media.portrait.src` in `src/data/site.ts` at the new file (the placeholder is
+`.svg`, so the extension changes).
 
 ## 3 & 4 — App screens (do NOT generate)
 
