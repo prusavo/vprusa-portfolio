@@ -46,15 +46,22 @@ holds the head, meta tags and JSON-LD.
 
 ## Design notes
 
-Ink on cool oat paper, in one centred column. Archivo (wide grotesque) for
-names, Newsreader (serif) for sentences, Martian Mono for labels — all
-self-hosted, so the page makes no third-party requests.
+An **ink poster**. The hero is a solid ink panel (`#15171B`) carrying the name
+at poster scale in ultra-expanded Archivo caps, with the portrait as a
+**duotone photograph** filling its cell edge to edge — the photo's luma is
+mapped from the page's ink to just under its paper, so it is literally made of
+the page's two colours and cannot clash. The scanned brushstroke runs the full
+viewport width beneath the hero: one gesture separating who from what.
 
-The one rule worth keeping: **the page is monochrome and colour belongs to the
-projects.** Each entry sets `--accent` and nothing else on the page does.
+Projects are typography, not screenshots — poster-size names with the live
+domain in mono beside them. The rule worth keeping: **everything is ink on
+paper; colour belongs to the projects** and appears only on hover, when you
+reach for one.
 
-Motion is a single fade-and-rise on load, in CSS, disabled under
-`prefers-reduced-motion`.
+Faces: Archivo (ultra-expanded, caps) for display, Newsreader italic for the
+single human line, Martian Mono for labels — all self-hosted, no third-party
+requests. Motion is one load stagger in CSS, disabled under
+`prefers-reduced-motion`. Zero JavaScript.
 
 ## SEO
 

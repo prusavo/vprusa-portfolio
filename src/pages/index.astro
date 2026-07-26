@@ -7,95 +7,86 @@ const year = new Date().getFullYear();
 ---
 
 <Base>
-  <main class="page">
+  <main>
     <header class="hero">
-      <div data-reveal style="--d:0.05s">
-        <p class="tag">{site.domain}</p>
-        <h1 class="name">Vojtěch<br />Prusa</h1>
-        <p class="tag role">{site.role}</p>
-        <p class="intro">{site.intro}</p>
+      <div class="hero__panel" data-reveal style="--d:0.05s">
+        <p class="tag hero__top">{site.domain}</p>
+
+        <h1 class="hero__name">Vojtěch<br />Prusa</h1>
+        <p class="tag hero__role">{site.role}</p>
+        <p class="hero__intro">{site.intro}</p>
       </div>
 
-      <img
-        class="hero__portrait"
-        src={media.portrait.src}
-        alt={media.portrait.alt}
-        width={media.portrait.width}
-        height={media.portrait.height}
-        data-reveal
-        style="--d:0.14s"
-      />
+      <div class="hero__photo" data-reveal style="--d:0.14s">
+        <img
+          src={media.portrait.src}
+          alt={media.portrait.alt}
+          width={media.portrait.width}
+          height={media.portrait.height}
+          fetchpriority="high"
+        />
+      </div>
     </header>
 
-    <img
-      class="ground"
-      src={media.ink.src}
-      alt=""
-      aria-hidden="true"
-      width={media.ink.width}
-      height={media.ink.height}
-      data-reveal
-      style="--d:0.24s"
-    />
+    <div class="stroke" data-reveal style="--d:0.26s" aria-hidden="true">
+      <img src={media.ink.src} alt="" width={media.ink.width} height={media.ink.height} />
+    </div>
 
-    <section class="section" aria-labelledby="projects-label">
-      <p class="tag section__label" id="projects-label">Live projects</p>
+    <div class="wrap">
+      <section class="section" aria-labelledby="projects-label">
+        <p class="tag section__label" id="projects-label">Live projects</p>
 
-      <ul class="list">
-        {
-          projects.map((project) => (
-            <li class="entry" style={`--accent:${project.accent}`}>
-              <a class="entry__link" href={project.url} rel="noopener noreferrer" target="_blank">
-                <div class="entry__media">
-                  <img
-                    src={project.image.src}
-                    alt={project.image.alt}
-                    width={project.image.width}
-                    height={project.image.height}
-                    loading="lazy"
-                  />
-                </div>
-
-                <div class="entry__body">
-                  <div class="entry__head">
-                    <span class="entry__dot" aria-hidden="true" />
-                    <h2 class="entry__name">{project.name}</h2>
-                    <span class="entry__arrow" aria-hidden="true">
+        <ul class="list">
+          {
+            projects.map((project) => (
+              <li class="project" style={`--accent:${project.accent}`}>
+                <a
+                  class="project__link"
+                  href={project.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span class="project__head">
+                    <h2 class="project__name">{project.name}</h2>
+                    <span class="project__domain">{project.domain}</span>
+                  </span>
+                  <span class="project__side">
+                    <span class="project__blurb">{project.blurb}</span>
+                    <span class="project__arrow" aria-hidden="true">
                       →
                     </span>
-                  </div>
-                  <p class="entry__blurb">{project.blurb}</p>
-                </div>
-              </a>
-            </li>
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="contact-label">
+        <p class="tag section__label" id="contact-label">Contact</p>
+
+        {
+          links.map((link) => (
+            <a
+              class="row"
+              href={link.href}
+              rel={link.external ? 'me noopener noreferrer' : undefined}
+              target={link.external ? '_blank' : undefined}
+            >
+              <span class="row__label">{link.label}</span>
+              <span class="row__value">{link.value}</span>
+              <span class="row__arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
           ))
         }
-      </ul>
-    </section>
+      </section>
 
-    <section class="section" aria-labelledby="contact-label">
-      <p class="tag section__label" id="contact-label">Contact</p>
-
-      {
-        links.map((link) => (
-          <a
-            class="row"
-            href={link.href}
-            rel={link.external ? 'me noopener noreferrer' : undefined}
-            target={link.external ? '_blank' : undefined}
-          >
-            <span class="row__label">{link.label}</span>
-            <span class="row__value">{link.value}</span>
-            <span class="row__arrow" aria-hidden="true">
-              →
-            </span>
-          </a>
-        ))
-      }
-    </section>
-
-    <footer class="footer">
-      <p class="tag">© {year} {site.name}</p>
-    </footer>
+      <footer class="footer">
+        <p class="tag">© {year} {site.name}</p>
+      </footer>
+    </div>
   </main>
 </Base>

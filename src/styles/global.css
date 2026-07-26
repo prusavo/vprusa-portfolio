@@ -1,21 +1,21 @@
 /*
- * vprusa.com — a calling card.
+ * vprusa.com — an ink poster.
  *
- * One page, one job: who this is, the two things he's built, how to reach him.
+ * The page is built from two materials: ink and paper. The hero is a solid ink
+ * panel carrying the name at poster scale, with the portrait as a duotone
+ * photograph filling its cell edge to edge — the photo is made of the page's
+ * own two colours, so it is material, not a sticker. The scanned brushstroke
+ * runs the full viewport width beneath it: one gesture separating who from
+ * what.
  *
- * The composition rule: the hero is a single object, not a stack of floating
- * ones. The name and the cut-out portrait share a baseline, and the ink stroke
- * runs the full width directly beneath them — it is the ground they stand on,
- * which is also why it is a structural element rather than decoration.
- *
- * Colour rule: the page is monochrome and colour belongs to the projects. Each
- * entry sets --accent; nothing else on the page does.
+ * Colour rule: everything is ink on paper; colour belongs to the projects and
+ * appears only when you reach for one.
  */
 
 :root {
   --paper: #e9eae4;
-  --card: #f0f1eb;
   --ink: #15171b;
+  --paper-dim: rgba(233, 234, 228, 0.62);
   --graphite: #5c6269;
   --rule: #cbcdc5;
   --accent: var(--ink);
@@ -24,6 +24,7 @@
   --font-prose: 'Newsreader Variable', Georgia, serif;
   --font-mono: 'Martian Mono', ui-monospace, Menlo, monospace;
 
+  --pad: clamp(1.25rem, 5vw, 3.5rem);
   --ease: cubic-bezier(0.16, 0.84, 0.3, 1);
 }
 
@@ -54,30 +55,29 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
 }
 
 img {
   display: block;
   max-width: 100%;
-  height: auto;
 }
 
-.page {
+/* Content column for everything below the hero. */
+.wrap {
   width: 100%;
-  max-width: 52rem;
+  max-width: 66rem;
   margin-inline: auto;
-  padding: clamp(2.25rem, 8vw, 4.5rem) clamp(1.25rem, 6vw, 2rem) 3rem;
+  padding-inline: var(--pad);
 }
 
 .tag {
   font-family: var(--font-mono);
   font-size: 0.625rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--graphite);
   margin: 0;
 }
 
@@ -85,58 +85,112 @@ img {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: clamp(0.75rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+  background: var(--ink);
+  color: var(--paper);
 }
 
-.name {
+.hero__panel {
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad);
+  min-height: min(88vh, 46rem);
+}
+
+.hero__top {
+  color: var(--paper-dim);
+}
+
+.hero__name {
+  margin: auto 0 0;
   font-family: var(--font-display);
   font-weight: 800;
-  font-stretch: 112%;
-  font-size: clamp(2.5rem, 10.5vw, 4.75rem);
-  line-height: 0.88;
-  letter-spacing: -0.035em;
-  margin: 0.9rem 0 0;
+  font-stretch: 122%;
+  font-size: clamp(3rem, 9.5vw, 7.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  /* Ink is never pure on paper — soften the white a touch. */
+  color: var(--paper);
 }
 
-.role {
-  margin-top: 0.9rem;
+.hero__role {
+  margin-top: 1.1rem;
+  color: var(--paper-dim);
 }
 
-.intro {
-  margin: 1.1rem 0 0;
-  font-size: clamp(1.125rem, 1vw + 1rem, 1.375rem);
-  line-height: 1.4;
+.hero__intro {
+  margin: clamp(1.5rem, 4vh, 2.5rem) 0 0;
+  font-style: italic;
+  font-size: clamp(1.375rem, 2.6vw, 2rem);
+  line-height: 1.3;
+  color: var(--paper);
 }
 
-/* Cut out onto the paper — no frame, no backdrop of its own. The negative
-   bottom margin lets him stand on the stroke rather than hover above it. */
-.hero__portrait {
-  width: clamp(7.5rem, 27vw, 15.5rem);
-  margin-bottom: -0.4rem;
-  justify-self: end;
+.hero__photo {
+  position: relative;
+  overflow: hidden;
 }
 
-/* The ink stroke as the hero's ground line. Cropped to a band so it reads as a
-   rule spanning the page, not as a picture of a brushstroke. */
-.ground {
+.hero__photo img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: clamp(4.5rem, 11vw, 8rem);
+  height: 100%;
   object-fit: cover;
-  object-position: center 46%;
-  margin-top: 0.25rem;
+  object-position: 50% 18%;
 }
 
-/* ----------------------------------------------------------------- section */
+@media (max-width: 47rem) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__panel {
+    min-height: 0;
+    padding-block: clamp(2.25rem, 9vw, 3.5rem);
+  }
+
+  .hero__name {
+    margin-top: 2.75rem;
+  }
+
+  .hero__photo {
+    order: -1;               /* face first on a phone */
+    aspect-ratio: 5 / 4;
+  }
+
+  .hero__photo img {
+    position: static;
+    aspect-ratio: 5 / 4;
+    object-position: 50% 12%;
+  }
+}
+
+/* The stroke: one gesture, full viewport width, separating who from what. */
+.stroke {
+  overflow: hidden;
+  height: clamp(6rem, 15vw, 11rem);
+  margin-top: clamp(2.25rem, 6vw, 4rem);
+}
+
+.stroke img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+/* ---------------------------------------------------------------- sections */
 
 .section {
-  margin-top: clamp(2.75rem, 8vw, 4.25rem);
+  margin-top: clamp(2.5rem, 7vw, 4.5rem);
 }
 
 .section__label {
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid var(--rule);
+  color: var(--graphite);
+  padding-bottom: 0.9rem;
+  border-bottom: 2px solid var(--ink);
 }
 
 .list {
@@ -145,102 +199,102 @@ img {
   padding: 0;
 }
 
-/* ----------------------------------------------------------------- entries */
+/* ---------------------------------------------------------- project rows */
 
-.entry {
+.project {
   border-bottom: 1px solid var(--rule);
 }
 
-.entry__link {
+.project__link {
   display: grid;
-  gap: 1.25rem;
-  padding: 1.75rem 0 2rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.4rem 2.5rem;
+  align-items: baseline;
+  padding: clamp(1.5rem, 4vw, 2.25rem) 0;
   color: inherit;
   text-decoration: none;
-  align-items: center;
 }
 
-@media (min-width: 40rem) {
-  .entry__link {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(1.5rem, 4vw, 2.5rem);
-  }
-
-  /* Alternate which side the product sits on, so the two entries mirror. */
-  .entry:nth-child(even) .entry__media {
-    order: 2;
+@media (min-width: 47rem) {
+  .project__link {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   }
 }
 
-.entry__media img {
-  width: 100%;
-  border-radius: 6px;
-  transition: opacity 0.3s var(--ease);
-}
-
-.entry__head {
+.project__head {
   display: flex;
   align-items: baseline;
-  gap: 0.7rem;
+  gap: 1rem;
+  min-width: 0;
 }
 
-.entry__dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  flex: none;
-  background: var(--accent);
-}
-
-.entry__name {
+.project__name {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-stretch: 105%;
-  font-size: clamp(1.5rem, 4.5vw, 2rem);
-  line-height: 1;
-  letter-spacing: -0.022em;
+  font-weight: 800;
+  font-stretch: 118%;
+  font-size: clamp(2.25rem, 6.5vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
   margin: 0;
-  transition: color 0.25s var(--ease);
+  transition: color 0.22s var(--ease);
 }
 
-.entry__arrow {
-  margin-left: auto;
+.project__domain {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
   color: var(--graphite);
-  transition: transform 0.3s var(--ease), color 0.25s var(--ease);
+  white-space: nowrap;
+  transition: color 0.22s var(--ease);
 }
 
-.entry__blurb {
-  margin: 0.65rem 0 0;
+.project__side {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.project__blurb {
+  margin: 0;
   color: var(--graphite);
-  max-width: 34ch;
+  max-width: 36ch;
   text-wrap: pretty;
 }
 
-/* Hovering an entry is the only time its colour reaches the type. */
-.entry__link:hover .entry__name,
-.entry__link:focus-visible .entry__name {
+.project__arrow {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--graphite);
+  transition: transform 0.3s var(--ease), color 0.22s var(--ease);
+}
+
+/* Reaching for a project is the only moment its colour appears. */
+.project__link:hover .project__name,
+.project__link:focus-visible .project__name {
   color: var(--accent);
 }
 
-.entry__link:hover .entry__arrow,
-.entry__link:focus-visible .entry__arrow {
-  transform: translateX(0.35rem);
+.project__link:hover .project__domain,
+.project__link:focus-visible .project__domain,
+.project__link:hover .project__arrow,
+.project__link:focus-visible .project__arrow {
   color: var(--accent);
 }
 
-.entry__link:hover .entry__media img,
-.entry__link:focus-visible .entry__media img {
-  opacity: 0.88;
+.project__link:hover .project__arrow,
+.project__link:focus-visible .project__arrow {
+  transform: translateX(0.5rem);
 }
 
-/* -------------------------------------------------------------- link rows */
+/* ------------------------------------------------------------ contact rows */
 
 .row {
   display: flex;
   align-items: baseline;
-  gap: 0.9rem;
-  padding: 1.05rem 0;
+  gap: 1rem;
+  padding: 1.15rem 0;
   border-bottom: 1px solid var(--rule);
   color: inherit;
   text-decoration: none;
@@ -249,47 +303,46 @@ img {
 .row__label {
   font-family: var(--font-mono);
   font-size: 0.625rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--graphite);
   flex: none;
-  width: 5.5rem;
+  width: 6rem;
 }
 
 .row__value {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-stretch: 104%;
-  font-size: clamp(1.0625rem, 2.6vw, 1.375rem);
-  letter-spacing: -0.015em;
+  font-weight: 700;
+  font-stretch: 108%;
+  font-size: clamp(1.125rem, 3.2vw, 1.75rem);
+  letter-spacing: -0.02em;
   word-break: break-word;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.25s var(--ease);
+  transition: opacity 0.22s var(--ease);
 }
 
 .row__arrow {
   margin-left: auto;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: var(--graphite);
-  transition: transform 0.3s var(--ease), color 0.25s var(--ease);
+  transition: transform 0.3s var(--ease), color 0.22s var(--ease);
 }
 
 .row:hover .row__value,
 .row:focus-visible .row__value {
-  border-bottom-color: currentColor;
+  opacity: 0.6;
 }
 
 .row:hover .row__arrow,
 .row:focus-visible .row__arrow {
-  transform: translateX(0.35rem);
+  transform: translateX(0.5rem);
   color: var(--ink);
 }
 
 @media (max-width: 26rem) {
   .row {
     flex-wrap: wrap;
-    gap: 0.3rem 0.9rem;
+    gap: 0.25rem 1rem;
   }
 
   .row__label {
@@ -300,7 +353,34 @@ img {
 /* ------------------------------------------------------------------ footer */
 
 .footer {
-  margin-top: 2rem;
+  padding: 2.25rem 0 2.75rem;
+}
+
+.footer .tag {
+  color: var(--graphite);
+}
+
+/* --------------------------------------------------------------- 404 page */
+
+.error {
+  padding-block: clamp(3rem, 12vw, 7rem);
+}
+
+.error__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 120%;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  margin: 1rem 0 0;
+}
+
+.error__note {
+  margin: 1.5rem 0 2.5rem;
+  font-style: italic;
+  font-size: 1.25rem;
 }
 
 /* ------------------------------------------------------------------ motion */

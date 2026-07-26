@@ -50,17 +50,21 @@ export const sameAs = links.filter((l) => l.external).map((l) => l.href);
  * through, so it stays correct whatever the paper colour becomes.
  */
 export const media = {
-  /** Cut out of its studio backdrop so it sits directly on the paper. */
+  /**
+   * Duotone: luma mapped from the page's ink to just under its paper, so the
+   * photograph is built from the page's own two colours and cannot clash. It
+   * fills its hero cell edge to edge — material, not a sticker.
+   */
   portrait: {
     src: '/media/portrait.webp',
     alt: 'Vojtěch Prusa',
-    width: 700,
-    height: 772,
+    width: 1000,
+    height: 1250,
   },
-  /** Trimmed to the stroke, so it spans its box edge to edge. */
+  /** Keyed transparent, trimmed to the stroke; runs the full viewport width. */
   ink: {
     src: '/media/ink-mark.webp',
-    width: 1100,
-    height: 469,
+    width: 1600,
+    height: 683,
   },
 } as const;
