@@ -6,12 +6,35 @@ replaced with genuine screenshots, never with generated fakes.
 
 Replace a file at the same path and the layout is unchanged.
 
-| Slot | Path | Box | Source |
-|---|---|---|---|
-| Ink mark | `public/media/ink-mark.svg` | 1200 × 320, displayed ≤ 27rem wide | AI-generated |
-| Portrait | `public/media/portrait.svg` | 400 × 500 (4:5) | Generated from 6 reference photos of me |
-| Plesica screen | `public/media/plesica.svg` | 800 × 600 (4:3) | Real screenshot |
-| Gymrora screen | `public/media/gymrora.svg` | 800 × 600 (4:3) | Real screenshot |
+| Slot | Path | Box | Source | State |
+|---|---|---|---|---|
+| Ink mark | `public/media/ink-mark.webp` | 900 × 384, displayed ≤ 27rem wide | AI-generated | **done** |
+| Portrait | `public/media/portrait.webp` | 600 × 750 (4:5) | Generated from 6 reference photos of me | **done** |
+| Plesica screen | `public/media/plesica.svg` | 800 × 600 (4:3) | Real screenshot | placeholder |
+| Gymrora screen | `public/media/gymrora.svg` | 800 × 600 (4:3) | Real screenshot | placeholder |
+
+### Post-processing (if either is regenerated)
+
+Both originals were multi-megabyte PNGs; they ship as WebP.
+
+- **Portrait** — resize to 600 px wide, WebP q82. That is ~24 kB and covers a 3×
+  display at the 9rem it is shown at.
+- **Ink mark** — the scan's paper sat two or three levels below `#E9EAE4`, which
+  showed on the page as a faint rectangle. Colour-matching it is brittle, so the
+  paper is **keyed out to transparency** instead: luminance becomes the alpha
+  channel (paper → 0, ink → 255) over a solid `#15171B` fill, resized to 900 px,
+  WebP q75 / alphaQuality 70 → ~12 kB.
+
+  One trap: sharp applies `linear()` *before* `negate()` regardless of the order
+  you call them, which silently leaves a ~13 % grey veil over the whole frame.
+  Do it in a single negative-slope pass instead:
+
+  ```js
+  sharp(src).grayscale().linear(-255 / PAPER, 255)  // PAPER = 227, the scan's paper level
+  ```
+
+  Verify by sampling a rendered screenshot inside and outside the image — both
+  should read exactly `#e9eae4`.
 
 The page palette, for reference:
 

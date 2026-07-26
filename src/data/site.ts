@@ -42,20 +42,23 @@ export const links = [
 export const sameAs = links.filter((l) => l.external).map((l) => l.href);
 
 /**
- * Images. Both are placeholders drawn in the page's own palette — swap the file
- * at the same path (keeping the dimensions) and nothing else needs to change.
- * Generation prompts live in docs/asset-prompts.md.
+ * Images. Both are final: generated, then resized and converted to WebP.
+ *
+ * The ink mark's paper was keyed out to transparency rather than colour-matched
+ * — its scanned paper sat two or three levels below #E9EAE4, which showed as a
+ * faint rectangle. With an alpha channel the page's own background shows
+ * through, so it stays correct whatever the paper colour becomes.
  */
 export const media = {
   portrait: {
-    src: '/media/portrait.svg',
+    src: '/media/portrait.webp',
     alt: 'Vojtěch Prusa',
-    width: 400,
-    height: 500,
+    width: 600,
+    height: 750,
   },
   ink: {
-    src: '/media/ink-mark.svg',
-    width: 1200,
-    height: 320,
+    src: '/media/ink-mark.webp',
+    width: 900,
+    height: 384,
   },
 } as const;
